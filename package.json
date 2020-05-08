@@ -1,0 +1,17 @@
+{
+  "name": "lf_test",
+  "version": "1.0.0",
+  "description": "test",
+  "author": "hoshi",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "license": "Apache License 2.0",
+  "dependencies": {
+    "nuxt": "^2.12.2"
+  },
+  "scripts": {
+    "generate": "nuxt generate",
+    "build": "nuxt build"
+  }
+}

@@ -1,2 +1,2 @@
 # lf_test
-netlify no test
+netlify & Nuxt.js test
