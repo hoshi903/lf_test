@@ -1,7 +1,24 @@
+import FMMode from 'frontmatter-markdown-loader/mode'
+import path from 'path'
+
 module.exports = {
   mode: 'spa',
+  loading: {
+    color: '#009688',
+    height: '2px'
+  },
+  loadingIndicator: '@/components/loading.vue',
   head: {
     title: 'Nuxt実験エリア - 903.netlify.app',
+    link: [
+      { rel: 'canonical', href: 'https://903.netlify.app' },
+      // Icons
+      { rel: 'icon', href: 'img/favicon.ico', type: 'image/vnd.microsoft.icon'  },
+      { rel: 'shortcut icon', href: 'img/favicon.ico', type: 'image/vnd.microsoft.icon' },
+      { rel: 'apple-touch-icon', sizes: "152x152", href: 'img/touch/apple-touch-icon.png' },
+      // PWA
+      { rel: 'manifest', href: 'manifest.json' },
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' },
@@ -18,24 +35,27 @@ module.exports = {
       { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
       // iOS Safari No CallLink
       { name: 'format-detection', content: 'telephone=no' },
-    ],
-    link: [
-      { rel: 'canonical', href: 'https://903.netlify.app' },
-      // Icons
-      { rel: 'icon', href: 'img/favicon.ico', type: 'image/vnd.microsoft.icon'  },
-      { rel: 'shortcut icon', href: 'img/favicon.ico', type: 'image/vnd.microsoft.icon' },
-      { rel: 'apple-touch-icon', sizes: "152x152", href: 'img/touch/apple-touch-icon.png' },
-      // PWA
-      { rel: 'manifest', href: 'manifest.json' },
     ]
   },
-  css: [
-    '~assets/css/style.css',
-    '~assets/css/load.css',
-    '~assets/css/font-awesome.min.css'
-  ],
   plugins: [
     { src: '@/plugins/inobounce.min.js', ssr: false },
     { src: '@/plugins/lazysizes.min.js', ssr: false },
   ],
+  build: {
+    extend (config) {
+      config.module.rules.push(
+        {
+          test: /\.md$/,
+          loader: 'frontmatter-markdown-loader',
+          include: path.resolve(__dirname, 'articles'),
+          options: {
+            mode: [FMMode.VUE_COMPONENT],
+            vue: {
+              root: 'markdown-body'
+            }
+          }
+        }
+      )
+    }
+  }
 }

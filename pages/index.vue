@@ -1,12 +1,43 @@
 <template>
-  <div class="content border bgcolor-wh">
-    <h1>Nuxt実験場</h1>
-    <span>ここは903.netlify.com (デプロイ確認済)</span><br>
-    <span>新しいVue実験場にします (たぶん)</span>
+  <div class="content fullh border bgcolor-wh">
+    <transition name="right-fade">
+      <div v-show="true" class="big">
+        <span><i class="fa fa-fw fa-pencil"></i>others.</span>
+      </div>
+    </transition>
+    <span>チップチューンやドット絵に限らず個人の創作活動の記録など、</span><br>
+    <span>「悦楽舎Web」としてリニューアルした際にごっそり削ったコンテンツが復活するかもしれないページです。</span><br>
+    <ul class="flex start">
+      <tile-article
+        v-for="article in articles"
+        :key="article.name"
+        :obj="article" />
+    </ul>
   </div>
 </template>
 <script>
-export default {
-  layout: 'shadows-frame'
-}
+  import TileArticle from "@/components/tile_article.vue";
+  import List from '@/articles/list.js'
+
+  export default {
+    layout: 'shadows-frame',
+    components: {
+      TileArticle
+    },
+    async asyncData ({app}) {
+      const articles = List
+
+      async function asyncImport (id) {
+        const mds = await import(`@/articles/${id}.md`)
+        return mds.attributes
+      }
+
+      return Promise.all(articles.map(id => asyncImport(id)))
+      .then((res) => {
+        return {
+          articles: res
+        }
+      })
+    }
+  }
 </script>
