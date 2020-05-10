@@ -22,7 +22,7 @@
 /* ===========================
     Reset CSS
 =========================== */
-html, body, h1, h2, h3, h4, ul, ol, dl, li, dt, dd, p, div, span, img, a, table, tr, th, td{
+html, body, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, div, span, img, a, table, tr, th, td{
   margin: 0;
   padding: 0;
   border: 0;
@@ -94,7 +94,7 @@ div.app-footer .big, div.app-header .big, .content .big{
   font-family: 'mplight';
   font-size: 20px;
 }
-.link-wrapper span{
+.link-wrapper > span, .link-wrapper > a{
   font-family: 'mplight';
   font-size: 18px;
 }
@@ -164,9 +164,7 @@ body{
   font-family:  "mpreg", Arial, sans-serif;
   font-style: normal;
   font-weight: 300;
-  /*letter-spacing: 0.1px;*/
   word-wrap: break-word;
-  background-color: #F3F3F1;
 }
 
 ::-webkit-scrollbar {
@@ -239,56 +237,7 @@ div.app-footer > div > div:last-child, div.app-header > div > div:last-child{
   margin-left: auto;
 }
 
-div.app-loader {
-  width: 120px;
-  height: 142px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -60px 0 0 -58px;
-  text-align: center;
-}
-.circle-loader {
-  width: 120px;
-  height: 120px;
-  fill: transparent;
-  stroke: #009688;
-  stroke-width: 4;
-  animation: dash 2s ease infinite,rotate 2s linear infinite;
-}
-
-@keyframes dash {
-  0% {
-    stroke-dasharray: 2,187;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 145,187;
-    stroke-dashoffset: -15;
-  }
-  100% {
-    stroke-dasharray: 1,187;
-    stroke-dashoffset: -185;
-  }
-}
-
-@keyframes rotate {
-  0% {transform: rotate(0deg); }
-  100% {transform: rotate(360deg); }
-}
-@keyframes rrotate {
-  0% {transform: rotate(0deg); }
-  100% {transform: rotate(-360deg); }
-}
-
-@keyframes rightslide {
-  0% {transform: translateX(-30px); }
-  100% {transform: translateX(0px); }
-}
-@keyframes downslide {
-  0% {transform: translateY(-24px); }
-  100% {transform: translateX(0px); }
-}
+/* app-loader は loading.vue に移動 */
 
 /*  Awesome Icons
 --------------------------- */
@@ -381,11 +330,11 @@ div.app-loader {
   cursor: pointer;
 }
 .article {
-  margin: 9px 12px;
+  margin: 9px auto;
   padding: 7px 12px;
   max-width: 448px;
 }
-.article > img{
+.article img{
   width: 100%;
 }
 .content .big{
@@ -443,7 +392,7 @@ div.app-loader {
   cursor: pointer;
   overflow: visible;
 }
-.link-wrapper span{
+.link-wrapper > span, .link-wrapper > a {
   width: 191px;
   min-width: 70px; /* for iphone 5s */
   max-width: 191px; /* for all */

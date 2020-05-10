@@ -3,6 +3,6 @@
     <span onClick="window.location.href = 'https://hoshi.903.ch'" class="border bgcolor-wh stripe">top</span>
     <span onClick="window.location.href = 'https://hoshi.903.ch'" class="border bgcolor-wh stripe">about</span>
     <span onClick="window.location.href = 'https://hoshi.903.ch'" class="border bgcolor-wh stripe">works</span>
-    <span onClick="window.location.href = 'https://hoshi.903.ch'" class="border bgcolor-wh stripe">others</span>
+    <nuxt-link to="/" class="color border bgcolor-wh stripe">others</nuxt-link>
   </div>
 </template>

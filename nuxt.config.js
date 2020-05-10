@@ -1,5 +1,7 @@
-import FMMode from 'frontmatter-markdown-loader/mode'
+import fs from 'fs'
 import path from 'path'
+
+import FMMode from 'frontmatter-markdown-loader/mode'
 
 module.exports = {
   mode: 'spa',
@@ -37,6 +39,10 @@ module.exports = {
       { name: 'format-detection', content: 'telephone=no' },
     ]
   },
+  css: [
+    '@/static/css/style.css',
+    '@/static/css/font-awesome.min.css'
+  ],
   plugins: [
     { src: '@/plugins/inobounce.min.js', ssr: false },
     { src: '@/plugins/lazysizes.min.js', ssr: false },
@@ -49,13 +55,23 @@ module.exports = {
           loader: 'frontmatter-markdown-loader',
           include: path.resolve(__dirname, 'articles'),
           options: {
+            markdownIt: {
+              html: true,
+              breaks: true
+            },
             mode: [FMMode.VUE_COMPONENT],
-            vue: {
-              root: 'markdown-body'
-            }
+            vue: { root: "markdown-body" }
           }
         }
       )
     }
+  },
+  generate: {
+    routes: []
+    .concat(
+      fs.readdirSync(path.resolve(__dirname, 'articles'))
+      .filter(filename => path.extname(filename) === '.md')
+      .map(filename => `blog/${path.parse(filename).name}`)
+    )
   }
 }

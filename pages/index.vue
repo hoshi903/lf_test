@@ -7,7 +7,7 @@
     </transition>
     <span>チップチューンやドット絵に限らず個人の創作活動の記録など、</span><br>
     <span>「悦楽舎Web」としてリニューアルした際にごっそり削ったコンテンツが復活するかもしれないページです。</span><br>
-    <ul class="flex start">
+    <ul class="flex start wrap">
       <tile-article
         v-for="article in articles"
         :key="article.name"
@@ -27,12 +27,12 @@
     async asyncData ({app}) {
       const articles = List
 
-      async function asyncImport (id) {
+      async function importMD (id) {
         const mds = await import(`@/articles/${id}.md`)
         return mds.attributes
       }
 
-      return Promise.all(articles.map(id => asyncImport(id)))
+      return Promise.all(articles.map(id => importMD(id)))
       .then((res) => {
         return {
           articles: res
