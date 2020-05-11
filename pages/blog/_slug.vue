@@ -1,7 +1,7 @@
 <template>
   <div class="content border bgcolor-wh">
     <div class="intro flex">
-        <img :src="getBlank" :data-src="getMain" class="lazyload" alt="" style="width:1920px;">
+        <img :src="getBlank" :data-src="getMain" class="lazyload" alt="">
         <div class="front anime down-fade">
           <span><i class="fa fa-fw fa-pencil"></i><b>{{ date }}</b></span>
           <small v-if="update">({{ update }}加筆)</small>
@@ -97,6 +97,7 @@
     width: 100%;
     max-width: 568px;
     object-fit: cover;
+    padding: 0 12px;
 
     @media (max-width: 602px){
       max-width: 100%;
@@ -105,8 +106,13 @@
 
   .front {
     width: 100%;
-    padding: 34px 12px;
+    max-width: 348px;
+    padding: 34px 12px 0 12px;
     margin-bottom: auto;
+
+    @media (max-width: 830px){
+      max-width: 724px;
+    }
 
     h2 {
       font-size: 26px;
