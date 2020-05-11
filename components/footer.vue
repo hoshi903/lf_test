@@ -2,7 +2,7 @@
   <div class="app-footer color-wh bgcolor-bk">
     <div class="flex end">
       <span>
-        footer
+        <img alt="" src="https://903.ch/x/daycount/daycount.cgi?gif">/<img alt="" src="https://903.ch/x/daycount/daycount.cgi?today">/<img alt="" src="https://903.ch/x/daycount/daycount.cgi?yes">
       </span>
     </div>
   </div>

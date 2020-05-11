@@ -5,7 +5,9 @@
     <div class="app-main flex column">
       <Linker/>
       <div id="scroll" class="scrollable content-wrapper others">
-        <nuxt/>
+        <transition name="page">
+          <nuxt/>
+        </transition>
       </div>
       <XreaAd/>
     </div>

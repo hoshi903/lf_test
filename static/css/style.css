@@ -266,10 +266,16 @@ div.app-footer > div > div:last-child, div.app-header > div > div:last-child{
 .content .fa-fw.fa-pencil{
   animation: rotate .5s ease 1;
 }
+@keyframes rotate {
+  0% {transform: rotate(0deg); }
+  100% {transform: rotate(360deg); }
+}
+
 /*  App Elements
 --------------------------- */
 .link-wrapper{
   min-height: 33px;
+  white-space: nowrap;
 }
 .ad-wrapper{
 }
@@ -504,3 +510,22 @@ _::-webkit-full-page-media, _:future, :root *:not(textarea):not(input) { /* css 
 .down-fade-2nd-enter{          transform: translateY(-24px);}
 .right-fade-2nd-enter-active { transition: all .5s ease .4s;}
 .right-fade-2nd-enter{         transform: translateX(-30px);}
+
+
+.anime.right-fade{
+  animation: rightslide .5s ease .15s backwards;
+}
+@keyframes rightslide {
+  0% {transform: translateX(-30px); }
+  100% {transform: translateX(0px); }
+}
+
+.anime.down-fade{
+  animation: downslide .5s ease .15s backwards;
+}
+@keyframes downslide {
+  0% {transform: translateY(-24px); }
+  100% {transform: translateY(0px); }
+}
+
+.page-enter { display: none;} /* Scroll位置対策 */

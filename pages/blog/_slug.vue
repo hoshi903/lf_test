@@ -2,8 +2,8 @@
   <div class="content border bgcolor-wh">
     <div class="intro flex">
         <img :src="getBlank" :data-src="getMain" class="lazyload" alt="" style="width:1920px;">
-        <div class="front">
-          <span>{{ date }}</span>
+        <div class="front anime down-fade">
+          <span><i class="fa fa-fw fa-pencil"></i><b>{{ date }}</b></span>
           <small v-if="update">({{ update }}加筆)</small>
           <h2>{{ title }}</h2>
           <span>{{ description }}</span><br>
@@ -50,9 +50,9 @@
     },
     head () {
       return {
-        title: this.title + ' - 903.netlify.app',
+        title: this.title + ' - 903.blog',
         link: [
-          { rel: 'canonical', href: 'https://903.netlify.app' },
+          { rel: 'canonical', href: 'https://hoshi.903.ch' },
           // Icons
           { rel: 'icon', href: 'img/favicon.ico', type: 'image/vnd.microsoft.icon'  },
           { rel: 'shortcut icon', href: 'img/favicon.ico', type: 'image/vnd.microsoft.icon' },
@@ -65,12 +65,14 @@
           { name: 'viewport', content: 'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' },
           { name: 'theme-color', content: '#000' },
           // OGP
-          { property: 'og:title', content: this.title + ' - 903.netlify.app' },
-          { property: 'og:type', content: 'website' },
-          { property: 'og:url', content: 'https://903.netlify.app/' },
-          { property: 'og:image', content: 'http://hoshi.s54.xrea.com/img/touch/apple-touch-icon.png' },
-          { property: 'og:site_name', content: '903.netlify.app' },
+          { property: 'og:title', content: this.title + ' - 903.blog' },
+          { property: 'og:type', content: 'article' },
+          { property: 'og:url', content: 'https://hoshi.903.ch/blog/' + this.id + '/' },
+          { property: 'og:image', content: 'https://hoshi.903.ch/img/' + this.id + '/_thumbnail.jpg' },
+          { property: 'og:site_name', content: 'hoshi.903.ch' },
           { property: 'og:description', content: this.description },
+          // twitter
+          { name: 'twitter:card', content: 'summary_large_image' },
           // iOS Safari FullScreen
           { name: 'apple-mobile-web-app-capable', content: 'yes' },
           { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
@@ -80,6 +82,7 @@
       };
     }
   }
+
 </script>
 
 <style lang="scss">
@@ -94,12 +97,20 @@
     width: 100%;
     max-width: 568px;
     object-fit: cover;
+
+    @media (max-width: 602px){
+      max-width: 100%;
+    }
   }
 
   .front {
     width: 100%;
     padding: 34px 12px;
     margin-bottom: auto;
+
+    h2 {
+      font-size: 26px;
+    }
   }
 }
 
@@ -171,16 +182,103 @@
     padding: 3px 6px;
   }
   pre {
-    background-color: #f3f4f4;
+    line-height: 1.2;
+    background: #373739;
     border-radius: 4px;
     padding: 10px 21px;
     overflow-x: auto;
     margin-bottom: 32px;
 
+    div {
+      background: #fff;
+      width: fit-content;
+      margin: -10px 0 6px -8px;
+      padding: 0 6px;
+
+      small {
+        font-family: sans-serif;
+      }
+    }
+
     code {
+      font: normal 10pt Consolas, Monaco, monospace;
+      color: #d1d9e1;
+      background: #373739;
+      font-size: 12.5px;
       padding: 0;
     }
   }
 
 }
+
+.hljs-comment,
+.hljs-quote {
+  color: #969896;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-type,
+.hljs-addition {
+  color: #cc99cc;
+}
+
+.hljs-number,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #f99157;
+}
+
+.hljs-string,
+.hljs-doctag,
+.hljs-regexp {
+  color: #8abeb7;
+}
+
+.hljs-title,
+.hljs-name,
+.hljs-section,
+.hljs-built_in {
+  color: #b5bd68;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-selector-id,
+.hljs-class .hljs-title {
+   color: #ffcc66;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-link {
+  color: #f99157;
+}
+
+.hljs-deletion {
+  color: #dc322f;
+}
+
+.hljs-formula {
+  background: #eee8d5;
+}
+
+.hljs-attr,
+.hljs-attribute {
+  color: #81a2be;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
 </style>
