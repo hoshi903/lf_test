@@ -13,7 +13,7 @@
     "frontmatter-markdown-loader": "^3.4.2",
     "highlight.js": "^10.0.2",
     "markdown-it": "^10.0.0",
-    "nuxt": "^2.12.2"
+    "nuxt": "^2.15.8"
   },
   "devDependencies": {
     "node-sass": "^4.14.1",
